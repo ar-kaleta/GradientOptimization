@@ -1,3 +1,4 @@
 package optimization.gradient.problem;
 
-public class APoint { }
+public interface IPoint {
+}

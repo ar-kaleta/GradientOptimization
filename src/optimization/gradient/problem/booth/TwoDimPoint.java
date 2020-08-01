@@ -18,6 +18,11 @@ public class TwoDimPoint implements Point {
         this.x2 = x2;
     }
 
+    @Override
+    public String toString() {
+        return "TwoDimPoint("+ x1 + ", " + x2 + ")";
+    }
+
     public Double getX1() {
         return x1;
     }

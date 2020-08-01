@@ -1,8 +1,8 @@
 package optimization.gradient.problem;
 
-public interface IOptimizationProblem {
-    IPoint selectStartingPoint();
-    IPoint calculateNextPoint(IPoint point, Float alpha);
-    Float calculateFitnessFunction(IPoint point);
-    Float calculateDerivativeFitFun(IPoint point);
+public interface IOptimizationProblem <T extends Point> {
+    T selectStartingPoint();
+    T calculateNextPoint(T point, Double alpha);
+    Double calculateFitnessFunction(T point);
+    Double calculateDerivativeFitFun(T point);
 }

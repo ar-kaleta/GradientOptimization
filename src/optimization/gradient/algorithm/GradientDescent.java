@@ -1,26 +1,26 @@
 package optimization.gradient.algorithm;
-import optimization.gradient.problem.IPoint;
+import optimization.gradient.problem.Point;
 import optimization.gradient.problem.IOptimizationProblem;
 
 public class GradientDescent {
-    private final IOptimizationProblem problem;
-    private final Float epsilon;
-    private final Float alphaFactor;
+    private final IOptimizationProblem<Point> problem;
+    private final Double epsilon;
+    private final Double alphaFactor;
 
-    public GradientDescent(IOptimizationProblem problem, Float alphaFactor, Float epsilon){
+    public GradientDescent(IOptimizationProblem<Point> problem, Double alphaFactor, Double epsilon){
         this.problem = problem;
         this.alphaFactor = alphaFactor;
         this.epsilon = epsilon;
     }
 
-    private boolean stopCondition(IPoint x){
+    private boolean stopCondition(Point x){
         return problem.calculateDerivativeFitFun(x) < this.epsilon;
     }
 
-    public IPoint optimize(){
-        IPoint x = problem.selectStartingPoint();
-        Float alpha = 100f;                                      //!!!!!!!!!!!!!!
-        IPoint x1 = problem.calculateNextPoint(x, alpha);
+    public Point optimize(){
+        Point x = problem.selectStartingPoint();
+        Double alpha = 100.;                                      //!!!!!!!!!!!!!!
+        Point x1 = problem.calculateNextPoint(x, alpha);
 
         while(stopCondition(x)){
             if(problem.calculateFitnessFunction(x1) >= problem.calculateFitnessFunction(x)){

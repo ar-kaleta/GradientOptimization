@@ -1,6 +1,6 @@
 package optimization.gradient.algorithm;
-import optimization.gradient.problem.Point;
 import optimization.gradient.problem.IOptimizationProblem;
+import optimization.gradient.problem.Point;
 
 import java.util.List;
 
@@ -8,11 +8,13 @@ public class GradientDescent <T extends Point> {
     private final IOptimizationProblem<T> problem;
     private final Double epsilon;
     private final Double alphaFactor;
+    private final List<T> listOfPoints;
 
-    public GradientDescent(IOptimizationProblem<T> problem, Double alphaFactor, Double epsilon){
+    public GradientDescent(IOptimizationProblem<T> problem, Double alphaFactor, Double epsilon, List<T> listOfPoints){
         this.problem = problem;
         this.alphaFactor = alphaFactor;
         this.epsilon = epsilon;
+        this.listOfPoints = listOfPoints;
     }
 
     private boolean stopCondition(T x){
@@ -22,6 +24,7 @@ public class GradientDescent <T extends Point> {
 
     public T optimize(){
         T x = problem.selectStartingPoint();
+        listOfPoints.add(x);
         Double alpha = 1.;                                      //!!!!!!!!!!!!!!
         T x1 = problem.calculateNextPoint(x, alpha);
 
@@ -31,6 +34,7 @@ public class GradientDescent <T extends Point> {
             }
             else{
                 x = x1;
+                listOfPoints.add(x);
             }
             x1 = problem.calculateNextPoint(x, alpha);
         }

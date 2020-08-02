@@ -1,0 +1,30 @@
+plugins {
+
+    id 'java'
+}
+
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://maven.jzy3d.org/snapshots"
+        }
+    maven {
+        url "http://maven.jzy3d.org/releases"
+    }
+}
+
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile group: 'org.jzy3d', name: 'jzy3d-api', version: '1.0.0'
+
+
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+
+    testCompile "junit:junit:4.12"
+}
